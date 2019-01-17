@@ -15,4 +15,19 @@ class UI {
     this.itemList = [];
     this.itemID = 0;
   }
+
+
 }
+
+function eventeListeners() {
+  const budgetForm = document.getElementById('budget-form');
+  const expenseForm = document.getElementById('expense-form');
+  const expenseList = document.getElementById('expense-list');
+
+  // INSTANCE OF UI CLASS
+  const ui = new UI();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  eventeListeners();
+})
