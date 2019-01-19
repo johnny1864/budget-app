@@ -14,8 +14,48 @@ class UI {
     this.expenseList = document.getElementById("expense-list");
     this.itemList = [];
     this.itemID = 0;
+
   }
 
+
+  submitBudgetForm() {
+    const value = this.budgetInput.value;
+
+    console.log('test click');
+    // VALIDTE VALUE ENTERED
+    if (value === '' || value < 0) {
+      this.budgetFeedback.classList.add('showItem');
+      this.budgetFeedback.innerHTML = '<p> Value cannot be empty or negative';
+
+      setTimeout(() => {
+        this.budgetFeedback.classList.remove('showItem');
+      }, 3000);
+
+    }
+    else {
+
+      this.budgetAmount.textContent = value;
+      this.budgetInput.value = '';
+      this.showBalence();
+    }
+
+  }
+
+  showBalence() {
+    const expense = this.totalExpense();
+    const total = parseInt(this.budgetAmount.textContent) - expense;
+    this.balanceAmount.textContent = total;
+
+    if (total < 0) {
+      this.balance.classList.remove('showGreen', 'showBlack');
+      this.balance.classList.add('showRed');
+    }
+  }
+
+  totalExpense() {
+    let total = 400;
+    return total;
+  }
 
 }
 
@@ -26,6 +66,19 @@ function eventeListeners() {
 
   // INSTANCE OF UI CLASS
   const ui = new UI();
+
+  budgetForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    ui.submitBudgetForm();
+  });
+
+  expenseForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+
+  expenseList.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
